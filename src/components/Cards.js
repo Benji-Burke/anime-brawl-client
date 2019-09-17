@@ -6,9 +6,9 @@ import axios from 'axios'
 
 let baseURL = process.env.REACT_APP_BASEURL
 if(process.env.NODE_ENV==='development'){
-  baseURL = 'http://localhost:3000/characters'
+  baseURL = 'http://localhost:3000'
 } else{
-  baseURL='https://anime-app-api.herokuapp.com/characters'
+  baseURL='https://anime-app-api.herokuapp.com'
 }
 
 
@@ -36,7 +36,7 @@ class Cards extends Component {
   }
 
   async getData() {
-    const response = await axios.get(`http://localhost:3000/characters`);
+    const response = await axios.get(`${baseURL}/characters`);
     const data = response.data;
     // console.log(response)
     // console.log(data)
