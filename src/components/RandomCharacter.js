@@ -10,20 +10,20 @@ class RandomCharacter extends Component {
         super(props);
         this.state={
             characters: [],
-            character: {},
+            character: [],
             selectedCharacter: null,
             clicked: false,
-            randomCharacter: ''
+            randomCharacter: '',
+            health: 200
         } 
         this.handleClick=this.handleClick.bind(this)
         this.getData=this.getData.bind(this)
-        this.getCharacter=this.getCharacter.bind(this)
+        // this.getCharacter=this.getCharacter.bind(this)
     }
 
     async getData() {
         const response = await axios.get(`http://localhost:3000/characters`);
         const data = response.data;
-        console.log(response)
         console.log(data)
         this.setState({
           characters: data,
@@ -34,52 +34,39 @@ class RandomCharacter extends Component {
        
       }
 
-      getCharacter() {
+    //   getCharacter() {
        
-        const characterData = this.state.characters.filter((eachCharacter) => eachCharacter.id === (this.props.characterId))
-        this.setState({
-            character: characterData
-        }, () => console.log('character Player', this.state.character))
+    //     const characterData = this.state.characters.filter((eachCharacter) => eachCharacter.id === (this.props.characterId))
+    //     this.setState({
+    //         character: characterData
+    //     }, () => console.log('character Player', this.state.character))
         
-    }
+    // }
     
 
 
-    handleClick=()=>{
+    handleClick= async ()=>{
+        await this.getData()
+        console.log('random character: ',this.state.characters[Math.floor(Math.random()*this.state.characters.length)])
         this.setState({
             clicked:true,
-            selectedCharacter: this.state.characters[Math.floor(Math.random()*this.state.characters.length)]
+            character: this.state.characters[Math.floor(Math.random()*this.state.characters.length)]
            
         })
-        this.getData()
-        this.getCharacter()
+        // this.getCharacter()
     }
     render(){
         return(
             <div className="details">
                 <button onClick={this.handleClick}>Random</button>
-                {/* {this.state.character.map(character=>{
-                    return(
-                        <div>
-                            <h1>{character.name}</h1>
-                            <img src={character.img}/>
-                            <h1>{this.state.health}</h1>
-                            <div>
-                            <h1>{character.moves[0].name}</h1>
-                            </div>
-                            <div>
-                            <h1>{character.moves[1].name}</h1>
-                            </div>
-                            <div>
-                            <h1>{character.moves[2].name}</h1>
-                            </div>
-                            <div>
-                            <h1>{character.moves[3].name}</h1>
-                            </div>
-                            </div>
-                    )
 
-                })} */}
+
+                <h1>{this.state.character.name}</h1>
+                <img src={this.state.character.img}></img>
+                <h1>{this.state.character.health}</h1>
+
+                
+               <h1></h1>
             </div>
         )
     }

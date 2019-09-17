@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import RandomCharacter from './RandomCharacter.js';
+import Attack from './Attack.js'
 
 class Battle extends Component {
     constructor(props){
@@ -10,7 +11,8 @@ class Battle extends Component {
             // characters: [],
             character: [],
             characterId: '',
-            health: 200
+            health: 200, 
+            display: 'hideMoves'
         }
     }
     componentDidMount(){
@@ -30,19 +32,12 @@ class Battle extends Component {
         this.getCharacter()
       }
 
-      async getRandomCharacter(){
-        const getRandomItem = iterable => iterable.get([...iterable.keys()][Math.floor(Math.random() * iterable.size)])
-      }
+
     
 
 
 
-
-    // getCharacter(character) {
-    //     const characterData = this.state.characters.filter((eachCharacter)=>eachCharacter.id===(this.props.characterId))
-    //     this.setState({ character: characterData }, ()=>
-    //     console.log('selected', character))
-    //   }
+   
 
       getCharacter() {
        
@@ -52,20 +47,32 @@ class Battle extends Component {
         }, () => console.log('character Player', this.state.character))
         
     }
+
+    startGame(){
+      prompt('Are you ready to play?');
+        alert('Fight')
+    }
    
    
 
     render(){
         return(
-          
-<>
+            
+            <>
             <div className="details">
+            <h3>Lets Battle!</h3>
+                <div className="row">
+
                 {this.state.character.map(character=>{
                     return(
-                        <div>
+                        <div className="col s6">
                             <h1>{character.name}</h1>
                             <img src={character.img}/>
                             <h1>{this.state.health}</h1>
+
+                            <button>Attack</button>
+                            <button>Defend</button>
+                            <div className="movesContainer card-panel blue">
                             <div>
                             <h1>{character.moves[0].name}</h1>
                             </div>
@@ -79,15 +86,20 @@ class Battle extends Component {
                             <h1>{character.moves[3].name}</h1>
                             </div>
                             </div>
+                            </div>
                     )
-
+                    
                 })}
                 
-                <h3>Lets Battle!</h3>
+                <div className="col s6">
                 <RandomCharacter
                 
                 />
+
+                </div>
+                </div>
               <Link to="/">Home</Link>
+                {/* <Attack/> */}
             
                
                 
