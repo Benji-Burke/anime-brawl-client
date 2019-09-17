@@ -4,6 +4,16 @@ import Battle from './Battle'
 
 import axios from 'axios'
 
+let baseURL = process.env.REACT_APP_BASEURL
+if(process.env.NODE_ENV==='development'){
+  baseURL = 'http://localhost:3000/characters'
+} else{
+  baseURL='https://anime-app-api.herokuapp.com/characters'
+}
+
+
+
+
 
 class Cards extends Component {
   constructor(props) {
@@ -32,20 +42,14 @@ class Cards extends Component {
     // console.log(data)
     this.setState({
       characters: data,
-   
-     
     });
   }
-
-
 
   async componentDidMount() {
     await this.getData();
     // await this.getMoveSet();
     // await this.getCharacter();
     // console.log('character: ', this.state.characters);
-   
-   
  
   }
 
@@ -53,10 +57,6 @@ class Cards extends Component {
     this.setState({ character: character });
     console.log('clicked', character)
   }
-
-
-
-
 
   handleClick(id){
      this.setState({
@@ -66,11 +66,6 @@ class Cards extends Component {
     console.log('h', this.state.characterId)
   }
 
-  
-
-  
-  
- 
   render() {
     return (
   
@@ -98,7 +93,6 @@ class Cards extends Component {
                  
                  <button
                  key={character.id}
-                //  onClick={()=>this.getCharacter(character)}
                  ><div ><Link to={`/battle/${character.id}`}
                  onClick={(id)=>{
                    this.props.handleClick(character.id)
