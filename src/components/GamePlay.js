@@ -1,4 +1,4 @@
-import React,  { Component } from 'react';
+// import React,  { Component } from 'react';
 
 // class GamePlay extends Component {
 
@@ -42,4 +42,4 @@ import React,  { Component } from 'react';
 
 
 
-export default GamePlay;
+// export default GamePlay;

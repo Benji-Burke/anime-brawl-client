@@ -28,11 +28,9 @@ class Cards extends Component {
     };
     this.getData = this.getData.bind(this);
     this.getCharacter = this.getCharacter.bind(this);
-    // this.getMoveSet = this.getMoveSet.bind(this);
-    // this.getMove = this.getMove.bind(this)
+
     this.handleClick = this.handleClick.bind(this)
-    // this.openModalHandler = this.openModalHandler.bind(this);
-    // this.getSelectedCharacter=this.getSelectedCharacter.bind(this)
+  
   }
 
   async getData() {
@@ -47,9 +45,7 @@ class Cards extends Component {
 
   async componentDidMount() {
     await this.getData();
-    // await this.getMoveSet();
-    // await this.getCharacter();
-    // console.log('character: ', this.state.characters);
+    
  
   }
 
@@ -115,18 +111,6 @@ class Cards extends Component {
                   <p>{character.moves[1].name}</p>
                  <p>{character.moves[2].name}</p>
                  <p> {character.moves[3].name}</p>
-                  {/* {this.state.moves.map(moves =>{
-                    return(
-                      <p
-                      key={character._id}
-                      >moves: {character.moves.name}</p>
-                      
-                      
-                      
-                      ) })
-
-                    } */}
-                
                 </div>
               </div>
             </div>

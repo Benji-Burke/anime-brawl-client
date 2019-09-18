@@ -50,6 +50,7 @@ class RandomCharacter extends Component {
             
            
         })
+        
     }
     render(){
         return(
@@ -59,7 +60,7 @@ class RandomCharacter extends Component {
 
                 <h1>{this.state.character.name}</h1>
                 <img src={this.state.character.img}></img>
-                <h1>Health: {this.state.character.health}</h1>
+                <h1> {this.state.character.health}</h1>
 
                 
                <h1></h1>
